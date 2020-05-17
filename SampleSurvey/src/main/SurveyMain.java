@@ -30,7 +30,21 @@ public class SurveyMain {
 		}
 		
 	}
+	
+	public ArrayList<Survey> getAllSurveys() {
+		return surveys;
+	}
+	
+	public Survey getSurveyByName(String name) {
+
+		for(Survey survey: this.surveys) {
+			if(survey.getName().equals(name)) {
+				return survey;
+			}
+		}
 		
+		return null;
 		
+	}
 	
 }

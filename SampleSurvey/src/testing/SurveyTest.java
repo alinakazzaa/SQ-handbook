@@ -57,6 +57,24 @@ class SurveyTest {
 	}
 	
 	@Test
+	void testAddQuestionToSurvey() {
+		String testValue = "Test Survey";
+		String testQuestion = "Question 1 Test";
+		surveyMain.addSurvey(testValue);
+		Survey testSurvey = surveyMain.getSurveyByName(testValue);
+		
+		lBefore = testSurvey.getQuestions().size();
+		surveyMain.addQuestionToSurvey(testSurvey.getId(), testQuestion);
+		lAfter = testSurvey.getQuestions().size();
+		
+		if(lBefore < lAfter) {
+			return;
+		} else {
+			fail("Fail add question to survey");
+		}	
+	}
+	
+	@Test
 	void testAddResponseToSurvey() {
 		String testName = "Test Survey";
 		surveyMain.addSurvey(testName);

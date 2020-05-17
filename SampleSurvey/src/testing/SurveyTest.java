@@ -6,14 +6,19 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import classes.Question;
 import classes.Survey;
+import classes.SurveyResponse;
+import classes.Answer;
 import main.SurveyMain;
+
 
 class SurveyTest {
 	
 	private SurveyMain surveyMain = new SurveyMain();
 	private ArrayList<Survey>surveys = surveyMain.getAllSurveys();
 	private int lBefore, lAfter;
+	
 	@Test
 	void testAddSurvey() {
 		
@@ -65,6 +70,31 @@ class SurveyTest {
 			return;
 		} else {
 			fail("Fail add response to survey");
+		}
+	}
+	
+	@Test
+	void testAddAnswerToResponse() {
+		String testName = "Test Survey";
+		String testQstn = "Test Q1";
+		surveyMain.addSurvey(testName);
+		Survey survey = surveyMain.getSurveyByName(testName);
+		
+		surveyMain.addQuestionToSurvey(survey.getId(), testQstn);
+		surveyMain.addResponseToSurvey(survey.getId());
+		
+		SurveyResponse testResponse = survey.getResponses().get(0);
+		Question testQuestion =  survey.getQuestions().get(0);
+		
+		lBefore = testResponse.getAnswers().size();
+		surveyMain.addAnswerToResponse(survey.getId(), testResponse.getId(), testQuestion, 3);
+		lAfter = testResponse.getAnswers().size();
+		
+		
+		if(lBefore < lAfter) {
+			return;
+		} else {
+			fail("Fail add answer to response");
 		}
 	}
 

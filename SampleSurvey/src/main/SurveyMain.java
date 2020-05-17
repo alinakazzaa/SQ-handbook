@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import classes.Question;
 import classes.Survey;
+import classes.SurveyResponse;
+import classes.Answer;
 
 public class SurveyMain {
 	
@@ -46,4 +48,10 @@ public class SurveyMain {
 		return null;	
 	}
 	
+	public void addResponseToSurvey(int surveyId) {
+		int index = surveyId - 1;
+		Survey survey = surveys.get(index);
+		SurveyResponse response = new SurveyResponse((survey.getResponses().size() + 1));
+		survey.addResponse(response);		
+	}	
 }

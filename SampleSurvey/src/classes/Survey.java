@@ -7,8 +7,19 @@ public class Survey {
 	private int id;
 	private String name;
 	private ArrayList<Question> questions;
+	private ArrayList<SurveyResponse> responses;
 	
 	
+	public ArrayList<SurveyResponse> getResponses() {
+		return responses;
+	}
+
+
+	public void addResponse(SurveyResponse response) {
+		this.responses.add(response);
+	}
+
+
 	public Survey(int id, String name) {
 		super();
 		this.id = id;

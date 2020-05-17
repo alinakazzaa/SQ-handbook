@@ -62,4 +62,8 @@ public class SurveyMain {
 		response.addAnswer(answer);
 		survey.getResponses().set((responseId - 1), response);
 	}
+	
+	public ArrayList<SurveyResponse> getAllSurveyResponses(int surveyId) {
+		return surveys.get(surveyId -1).getResponses();
+	}
 }

@@ -15,14 +15,19 @@ The software component will consist of functionality to create a survey and rece
 
 Tasks will be done in 'sprints' or development stages, which will be timed and each task will receive an estimation of completion time. 
 
-Note: development time of this sample software will be much shorter than real life tools, however it will help to describe the process of the Scrum backlog, which will be customized to each product. 
+To estimate the amount of time it will take to do and the complexity of the task. To allocate story points, a Fibonacci sequence will be used i.e. 1, 2, 3, 5, 8, 13. 
 
+Note: development time of this sample software will be much shorter than real life tools, however it will help to describe the process of the Scrum backlog, which will be customized to each product. One story point for this sample project will be estimated at 10 minutes. 
 
 #### Sprint 1
 
 This sprint will focus on the surveyor functionality, as to begin the process of receiving answers to surveys will depend on the existence of these “must have” features. 
 
 ![Sprint 1](/resources/sprints/1.png)
+
+To begin the project, I will create survey objects that will be required such as Survey, Question and Response. Each object will have a set of attributes. This initial set up will take long, therefore 40 minutes is allocated to it. 
+
+To view the already existing projects, 20 minutes is sufficient enough. However, the overall spring time is the longest as it will contain the core functionality of the system. 
 
 #### Sprint 2
 
@@ -41,6 +46,8 @@ Spring three will focus on providing statistics of the survey and will calculate
 This sprint will be the extension of the statistics feature to gain deeper insight into individual response score of the survey questions, which will provide average, standard deviation, minimum and maximum score of each question’s responses. 
 
 ![Sprint 4](/resources/sprints/4.png)
+
+#### 
 
 #### Future Plans
 

@@ -6,18 +6,22 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import classes.Question;
 import classes.Survey;
+import classes.SurveyResponse;
+import classes.Answer;
 import main.SurveyMain;
+
 
 class SurveyTest {
 	
 	private SurveyMain surveyMain = new SurveyMain();
 	private ArrayList<Survey>surveys = surveyMain.getAllSurveys();
-
+	private int lBefore, lAfter;
+	
 	@Test
 	void testAddSurvey() {
 		
-		int lBefore, lAfter;
 		lBefore = surveys.size();
 		surveyMain.addSurvey("Test Survey");
 		lAfter = surveys.size();
@@ -50,6 +54,66 @@ class SurveyTest {
 		} else {
 			fail("Fail get survey by name");
 		}	
+	}
+	
+	@Test
+	void testAddQuestionToSurvey() {
+		String testValue = "Test Survey";
+		String testQuestion = "Question 1 Test";
+		surveyMain.addSurvey(testValue);
+		Survey testSurvey = surveyMain.getSurveyByName(testValue);
+		
+		lBefore = testSurvey.getQuestions().size();
+		surveyMain.addQuestionToSurvey(testSurvey.getId(), testQuestion);
+		lAfter = testSurvey.getQuestions().size();
+		
+		if(lBefore < lAfter) {
+			return;
+		} else {
+			fail("Fail add question to survey");
+		}	
+	}
+	
+	@Test
+	void testAddResponseToSurvey() {
+		String testName = "Test Survey";
+		surveyMain.addSurvey(testName);
+		Survey survey = surveyMain.getSurveyByName(testName);
+		
+		lBefore = survey.getResponses().size();
+		surveyMain.addResponseToSurvey(survey.getId());
+		lAfter = survey.getResponses().size();
+		
+		if(lBefore < lAfter) {
+			return;
+		} else {
+			fail("Fail add response to survey");
+		}
+	}
+	
+	@Test
+	void testAddAnswerToResponse() {
+		String testName = "Test Survey";
+		String testQstn = "Test Q1";
+		surveyMain.addSurvey(testName);
+		Survey survey = surveyMain.getSurveyByName(testName);
+		
+		surveyMain.addQuestionToSurvey(survey.getId(), testQstn);
+		surveyMain.addResponseToSurvey(survey.getId());
+		
+		SurveyResponse testResponse = survey.getResponses().get(0);
+		Question testQuestion =  survey.getQuestions().get(0);
+		
+		lBefore = testResponse.getAnswers().size();
+		surveyMain.addAnswerToResponse(survey.getId(), testResponse.getId(), testQuestion, 3);
+		lAfter = testResponse.getAnswers().size();
+		
+		
+		if(lBefore < lAfter) {
+			return;
+		} else {
+			fail("Fail add answer to response");
+		}
 	}
 
 }

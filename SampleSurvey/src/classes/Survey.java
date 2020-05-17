@@ -6,8 +6,8 @@ public class Survey {
 	
 	private int id;
 	private String name;
-	private ArrayList<Question> questions;
-	private ArrayList<SurveyResponse> responses;
+	private ArrayList<Question> questions = new ArrayList<Question>();
+	private ArrayList<SurveyResponse> responses = new ArrayList<SurveyResponse>();
 	
 	
 	public ArrayList<SurveyResponse> getResponses() {

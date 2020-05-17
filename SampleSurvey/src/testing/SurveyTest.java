@@ -11,13 +11,12 @@ import main.SurveyMain;
 
 class SurveyTest {
 	
-	private SurveyMain surveyMain;
+	private SurveyMain surveyMain = new SurveyMain();
+	private ArrayList<Survey>surveys = surveyMain.getAllSurveys();
 
 	@Test
 	void testAddSurvey() {
 		
-		surveyMain = new SurveyMain();
-		ArrayList<Survey>surveys = surveyMain.getAllSurveys();
 		int lBefore, lAfter;
 		lBefore = surveys.size();
 		surveyMain.addSurvey("Test Survey");
@@ -30,11 +29,27 @@ class SurveyTest {
 		}
 	}
 	
-//	@Test
-//	void test() {
-//		surveyMain = new SurveyMain();
-//		assertEquals(0, tester.multiply(10, 0), "10 x 0 must be 0");
-//		fail("Not yet implemented");
-//	}
+	@Test
+	void testGetAllSurveys() {
+
+		if(surveyMain.getAllSurveys() != null) {
+			return;
+		} else {
+			fail("Fail get all surveys");
+		}
+	}
+	
+	@Test
+	void testGetSurveyByName() {
+		String testValue = "Test Survey";
+		surveyMain.addSurvey(testValue);
+		Survey testSurvey = surveyMain.getSurveyByName(testValue);
+		
+		if(testSurvey != null) {
+			return;
+		} else {
+			fail("Fail get survey by name");
+		}	
+	}
 
 }

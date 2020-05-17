@@ -53,5 +53,13 @@ public class SurveyMain {
 		Survey survey = surveys.get(index);
 		SurveyResponse response = new SurveyResponse((survey.getResponses().size() + 1));
 		survey.addResponse(response);		
-	}	
+	}
+	
+	public void addAnswerToResponse(int surveyId, int responseId, Question question, int score) {
+		Answer answer = new Answer(question, score);
+		Survey survey = surveys.get(surveyId - 1);
+		SurveyResponse response = survey.getResponses().get(responseId - 1);
+		response.addAnswer(answer);
+		survey.getResponses().set((responseId - 1), response);
+	}
 }

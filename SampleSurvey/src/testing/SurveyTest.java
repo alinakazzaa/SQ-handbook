@@ -115,5 +115,4 @@ class SurveyTest {
 			fail("Fail add answer to response");
 		}
 	}
-	
 }

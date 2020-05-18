@@ -118,4 +118,25 @@ public class SurveyMain {
 		
 		return survey;
 	}
+	
+	public double getSurveyAverage(Survey survey) {
+		int average = 0;
+		int totalScore = 0;
+		int totalAnswers = 0;
+		
+		ArrayList<SurveyResponse> responses = survey.getResponses();
+		
+		for(SurveyResponse response: responses) {
+			ArrayList<Answer> answers = response.getAnswers();
+			totalAnswers = totalAnswers + answers.size();
+			
+			for(Answer answer: answers) {
+				totalScore = totalScore + answer.getScore();
+			}	
+		}
+		
+		average = totalScore / totalAnswers;
+		
+		return average;
+	}
 }

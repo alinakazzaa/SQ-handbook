@@ -13,7 +13,8 @@ public class SurveyMain {
 	private ArrayList<Survey> surveys = new ArrayList<Survey>();
 	
 	public SurveyMain() {
-		createTestSurvey();
+		Survey test = createTestSurvey();
+		getSurveyStandDev(test);
 	}
 	
 	public void main(String[] args) {
@@ -101,9 +102,6 @@ public class SurveyMain {
 			
 			addResponseToSurvey(survey.getId());
 			
-			// testing function
-			System.out.println("added response " + survey.getResponses().get(r).getId());
-			
 			for(int q = 0; q < survey.getQuestions().size(); q++) {
 				
 				// generate random score between 1 and 5
@@ -138,5 +136,25 @@ public class SurveyMain {
 		average = totalScore / totalAnswers;
 		
 		return average;
+	}
+	
+	// calculate average of survey responses
+	public double getSurveyStandDev(Survey survey) {
+		double average = getSurveyAverage(survey);
+		int totalAnswers = 0;
+		double stdDev = 0;
+		double totalDev = 0;
+		
+		for(SurveyResponse response: survey.getResponses()) {
+			
+			for(Answer answer: response.getAnswers()) {
+				totalAnswers++;
+				totalDev = totalDev + Math.pow((answer.getScore() - average), 2);
+			}	
+		}
+		
+		stdDev = Math.sqrt(totalDev/totalAnswers);
+		
+		return stdDev;
 	}
 }

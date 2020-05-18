@@ -141,6 +141,31 @@ class SurveyTest {
 		assertEquals(assertAverage, testAverage, "Average is not correct");
 	}
 	
+	@Test
+	void testGetSurveyStandDev() {
+
+		Survey testSur = surveyMain.createTestSurvey();
+		double average = surveyMain.getSurveyAverage(testSur);
+		
+		double testStdDev = surveyMain.getSurveyStandDev(testSur);
+		
+		double assertStdDev = 0;
+
+		int totalAnswers = 0;
+		double totalDev = 0;
+		
+		for(SurveyResponse response: testSur.getResponses()) {
+			
+			for(Answer answer: response.getAnswers()) {
+				totalAnswers++;
+				totalDev = totalDev + Math.pow((answer.getScore() - average), 2);
+			}	
+		}
+		
+		assertStdDev = Math.sqrt(totalDev/totalAnswers);
+		
+		assertEquals(assertStdDev, testStdDev, "Standard Deviation is not correct");
+	}
 	
 
 }

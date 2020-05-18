@@ -18,12 +18,14 @@ class SurveyTest {
 	private SurveyMain surveyMain = new SurveyMain();
 	private ArrayList<Survey>surveys = surveyMain.getAllSurveys();
 	private int lBefore, lAfter;
+	private String testSurvey = "Test Survey";
+	private String testQuestion = "Question 1 Test";
 	
 	@Test
 	void testAddSurvey() {
 		
 		lBefore = surveys.size();
-		surveyMain.addSurvey("Test Survey");
+		surveyMain.addSurvey(testSurvey);
 		lAfter = surveys.size();
 		
 		if(lBefore < lAfter) {
@@ -45,11 +47,11 @@ class SurveyTest {
 	
 	@Test
 	void testGetSurveyByName() {
-		String testValue = "Test Survey";
-		surveyMain.addSurvey(testValue);
-		Survey testSurvey = surveyMain.getSurveyByName(testValue);
 		
-		if(testSurvey != null) {
+		surveyMain.addSurvey(testSurvey);
+		Survey foundSurvey = surveyMain.getSurveyByName(testSurvey);
+		
+		if(foundSurvey != null) {
 			return;
 		} else {
 			fail("Fail get survey by name");
@@ -58,14 +60,13 @@ class SurveyTest {
 	
 	@Test
 	void testAddQuestionToSurvey() {
-		String testValue = "Test Survey";
-		String testQuestion = "Question 1 Test";
-		surveyMain.addSurvey(testValue);
-		Survey testSurvey = surveyMain.getSurveyByName(testValue);
+
+		surveyMain.addSurvey(testSurvey);
+		Survey foundSurvey = surveyMain.getSurveyByName(testSurvey);
 		
-		lBefore = testSurvey.getQuestions().size();
-		surveyMain.addQuestionToSurvey(testSurvey.getId(), testQuestion);
-		lAfter = testSurvey.getQuestions().size();
+		lBefore = foundSurvey.getQuestions().size();
+		surveyMain.addQuestionToSurvey(foundSurvey.getId(), testQuestion);
+		lAfter = foundSurvey.getQuestions().size();
 		
 		if(lBefore < lAfter) {
 			return;
@@ -76,9 +77,9 @@ class SurveyTest {
 	
 	@Test
 	void testAddResponseToSurvey() {
-		String testName = "Test Survey";
-		surveyMain.addSurvey(testName);
-		Survey survey = surveyMain.getSurveyByName(testName);
+		
+		surveyMain.addSurvey(testSurvey);
+		Survey survey = surveyMain.getSurveyByName(testSurvey);
 		
 		lBefore = survey.getResponses().size();
 		surveyMain.addResponseToSurvey(survey.getId());
@@ -93,19 +94,18 @@ class SurveyTest {
 	
 	@Test
 	void testAddAnswerToResponse() {
-		String testName = "Test Survey";
-		String testQstn = "Test Q1";
-		surveyMain.addSurvey(testName);
-		Survey survey = surveyMain.getSurveyByName(testName);
+
+		surveyMain.addSurvey(testSurvey);
+		Survey survey = surveyMain.getSurveyByName(testSurvey);
 		
-		surveyMain.addQuestionToSurvey(survey.getId(), testQstn);
+		surveyMain.addQuestionToSurvey(survey.getId(), testQuestion);
 		surveyMain.addResponseToSurvey(survey.getId());
 		
 		SurveyResponse testResponse = survey.getResponses().get(0);
-		Question testQuestion =  survey.getQuestions().get(0);
+		Question foundQuestion =  survey.getQuestions().get(0);
 		
 		lBefore = testResponse.getAnswers().size();
-		surveyMain.addAnswerToResponse(survey.getId(), testResponse.getId(), testQuestion, 3);
+		surveyMain.addAnswerToResponse(survey.getId(), testResponse.getId(), foundQuestion, 3);
 		lAfter = testResponse.getAnswers().size();
 		
 		
@@ -115,5 +115,5 @@ class SurveyTest {
 			fail("Fail add answer to response");
 		}
 	}
-
+	
 }

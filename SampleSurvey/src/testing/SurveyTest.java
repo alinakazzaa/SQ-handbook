@@ -11,6 +11,7 @@ import classes.Survey;
 import classes.SurveyResponse;
 import classes.Answer;
 import main.SurveyMain;
+import java.text.DecimalFormat;
 
 
 class SurveyTest {
@@ -115,4 +116,31 @@ class SurveyTest {
 			fail("Fail add answer to response");
 		}
 	}
+	
+	@Test
+	void testGetSurveyAverage() {
+
+		Survey testSur = surveyMain.createTestSurvey();
+		
+		double testAverage = surveyMain.getSurveyAverage(testSur);
+		
+		double assertAverage = 0;
+		int totalAnswers = 0;
+		double totalScore = 0;
+		
+		for(SurveyResponse resp: testSur.getResponses()) {
+			
+			for(Answer answer: resp.getAnswers()) {
+				totalAnswers++;
+				totalScore = totalScore + answer.getScore();
+			}
+		}
+		
+		assertAverage = totalScore / totalAnswers;
+		
+		assertEquals(assertAverage, testAverage, "Average is not correct");
+	}
+	
+	
+
 }

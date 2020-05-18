@@ -183,7 +183,26 @@ class SurveyTest {
 			}	
 		}
 		
-		assertEquals(assertMin, testMin, "Standard Deviation is not correct");
+		assertEquals(assertMin, testMin, "Minimum is not correct");
+	}
+	
+	@Test
+	void testGetSurveyMax() {
+
+		Survey testSur = surveyMain.createTestSurvey();
+		double testMax = surveyMain.getSurveyMax(testSur);
+		double assertMax = 1;
+		
+		for(SurveyResponse response: testSur.getResponses()) {
+			
+			for(int i = 0; i < response.getAnswers().size(); i++) {
+				if(response.getAnswers().get(i).getScore() > assertMax) {
+					assertMax = response.getAnswers().get(i).getScore();
+				}
+			}	
+		}
+		
+		assertEquals(assertMax, testMax, "Maximum score is not correct");
 	}
 	
 

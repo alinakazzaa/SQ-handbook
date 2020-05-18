@@ -173,4 +173,20 @@ public class SurveyMain {
 		
 		return min;
 	}
+	
+	// calculate maximum of survey responses
+	public int getSurveyMax(Survey survey) {
+		int max = 1;
+		
+		for(SurveyResponse response: survey.getResponses()) {
+			
+			for(int i = 0; i < response.getAnswers().size(); i++) {
+				if(response.getAnswers().get(i).getScore() > max) {
+					max = response.getAnswers().get(i).getScore();
+				}
+			}	
+		}
+		
+		return max;
+	}
 }

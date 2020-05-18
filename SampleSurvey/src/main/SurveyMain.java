@@ -14,7 +14,7 @@ public class SurveyMain {
 	
 	public SurveyMain() {
 		Survey test = createTestSurvey();
-		getSurveyStandDev(test);
+		getSurveyMin(test);
 	}
 	
 	public void main(String[] args) {
@@ -138,7 +138,7 @@ public class SurveyMain {
 		return average;
 	}
 	
-	// calculate average of survey responses
+	// calculate standard deviation of survey responses
 	public double getSurveyStandDev(Survey survey) {
 		double average = getSurveyAverage(survey);
 		int totalAnswers = 0;
@@ -156,5 +156,23 @@ public class SurveyMain {
 		stdDev = Math.sqrt(totalDev/totalAnswers);
 		
 		return stdDev;
+	}
+
+	// calculate minimum of survey responses
+	public int getSurveyMin(Survey survey) {
+		int min = 0;
+		
+		for(SurveyResponse response: survey.getResponses()) {
+			int i = 0;
+			min = response.getAnswers().get(i).getScore();
+			
+			for(i = 1; i < response.getAnswers().size(); i++) {
+				if(response.getAnswers().get(i).getScore() < min) {
+					min = response.getAnswers().get(i).getScore();
+				}
+			}	
+		}
+		
+		return min;
 	}
 }

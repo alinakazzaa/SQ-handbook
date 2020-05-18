@@ -11,6 +11,7 @@ import classes.Survey;
 import classes.SurveyResponse;
 import classes.Answer;
 import main.SurveyMain;
+import java.text.DecimalFormat;
 
 
 class SurveyTest {
@@ -18,12 +19,14 @@ class SurveyTest {
 	private SurveyMain surveyMain = new SurveyMain();
 	private ArrayList<Survey>surveys = surveyMain.getAllSurveys();
 	private int lBefore, lAfter;
+	private String testSurvey = "Test Survey";
+	private String testQuestion = "Question 1 Test";
 	
 	@Test
 	void testAddSurvey() {
 		
 		lBefore = surveys.size();
-		surveyMain.addSurvey("Test Survey");
+		surveyMain.addSurvey(testSurvey);
 		lAfter = surveys.size();
 		
 		if(lBefore < lAfter) {
@@ -45,11 +48,11 @@ class SurveyTest {
 	
 	@Test
 	void testGetSurveyByName() {
-		String testValue = "Test Survey";
-		surveyMain.addSurvey(testValue);
-		Survey testSurvey = surveyMain.getSurveyByName(testValue);
 		
-		if(testSurvey != null) {
+		surveyMain.addSurvey(testSurvey);
+		Survey foundSurvey = surveyMain.getSurveyByName(testSurvey);
+		
+		if(foundSurvey != null) {
 			return;
 		} else {
 			fail("Fail get survey by name");
@@ -58,14 +61,13 @@ class SurveyTest {
 	
 	@Test
 	void testAddQuestionToSurvey() {
-		String testValue = "Test Survey";
-		String testQuestion = "Question 1 Test";
-		surveyMain.addSurvey(testValue);
-		Survey testSurvey = surveyMain.getSurveyByName(testValue);
+
+		surveyMain.addSurvey(testSurvey);
+		Survey foundSurvey = surveyMain.getSurveyByName(testSurvey);
 		
-		lBefore = testSurvey.getQuestions().size();
-		surveyMain.addQuestionToSurvey(testSurvey.getId(), testQuestion);
-		lAfter = testSurvey.getQuestions().size();
+		lBefore = foundSurvey.getQuestions().size();
+		surveyMain.addQuestionToSurvey(foundSurvey.getId(), testQuestion);
+		lAfter = foundSurvey.getQuestions().size();
 		
 		if(lBefore < lAfter) {
 			return;
@@ -76,9 +78,9 @@ class SurveyTest {
 	
 	@Test
 	void testAddResponseToSurvey() {
-		String testName = "Test Survey";
-		surveyMain.addSurvey(testName);
-		Survey survey = surveyMain.getSurveyByName(testName);
+		
+		surveyMain.addSurvey(testSurvey);
+		Survey survey = surveyMain.getSurveyByName(testSurvey);
 		
 		lBefore = survey.getResponses().size();
 		surveyMain.addResponseToSurvey(survey.getId());
@@ -93,19 +95,18 @@ class SurveyTest {
 	
 	@Test
 	void testAddAnswerToResponse() {
-		String testName = "Test Survey";
-		String testQstn = "Test Q1";
-		surveyMain.addSurvey(testName);
-		Survey survey = surveyMain.getSurveyByName(testName);
+
+		surveyMain.addSurvey(testSurvey);
+		Survey survey = surveyMain.getSurveyByName(testSurvey);
 		
-		surveyMain.addQuestionToSurvey(survey.getId(), testQstn);
+		surveyMain.addQuestionToSurvey(survey.getId(), testQuestion);
 		surveyMain.addResponseToSurvey(survey.getId());
 		
 		SurveyResponse testResponse = survey.getResponses().get(0);
-		Question testQuestion =  survey.getQuestions().get(0);
+		Question foundQuestion =  survey.getQuestions().get(0);
 		
 		lBefore = testResponse.getAnswers().size();
-		surveyMain.addAnswerToResponse(survey.getId(), testResponse.getId(), testQuestion, 3);
+		surveyMain.addAnswerToResponse(survey.getId(), testResponse.getId(), foundQuestion, 3);
 		lAfter = testResponse.getAnswers().size();
 		
 		
@@ -115,5 +116,94 @@ class SurveyTest {
 			fail("Fail add answer to response");
 		}
 	}
+	
+	@Test
+	void testGetSurveyAverage() {
+
+		Survey testSur = surveyMain.createTestSurvey();
+		
+		double testAverage = surveyMain.getSurveyAverage(testSur);
+		
+		double assertAverage = 0;
+		int totalAnswers = 0;
+		double totalScore = 0;
+		
+		for(SurveyResponse resp: testSur.getResponses()) {
+			
+			for(Answer answer: resp.getAnswers()) {
+				totalAnswers++;
+				totalScore = totalScore + answer.getScore();
+			}
+		}
+		
+		assertAverage = totalScore / totalAnswers;
+		
+		assertEquals(assertAverage, testAverage, "Average is not correct");
+	}
+	
+	@Test
+	void testGetSurveyStandDev() {
+
+		Survey testSur = surveyMain.createTestSurvey();
+		double average = surveyMain.getSurveyAverage(testSur);
+		
+		double testStdDev = surveyMain.getSurveyStandDev(testSur);
+		
+		double assertStdDev = 0;
+
+		int totalAnswers = 0;
+		double totalDev = 0;
+		
+		for(SurveyResponse response: testSur.getResponses()) {
+			
+			for(Answer answer: response.getAnswers()) {
+				totalAnswers++;
+				totalDev = totalDev + Math.pow((answer.getScore() - average), 2);
+			}	
+		}
+		
+		assertStdDev = Math.sqrt(totalDev/totalAnswers);
+		
+		assertEquals(assertStdDev, testStdDev, "Standard Deviation is not correct");
+	}
+	
+	@Test
+	void testGetSurveyMin() {
+
+		Survey testSur = surveyMain.createTestSurvey();
+		double testMin = surveyMain.getSurveyMin(testSur);
+		double assertMin = 5;
+		
+		for(SurveyResponse response: testSur.getResponses()) {
+			
+			for(int i = 0; i < response.getAnswers().size(); i++) {
+				if(response.getAnswers().get(i).getScore() < assertMin) {
+					assertMin = response.getAnswers().get(i).getScore();
+				}
+			}	
+		}
+		
+		assertEquals(assertMin, testMin, "Minimum is not correct");
+	}
+	
+	@Test
+	void testGetSurveyMax() {
+
+		Survey testSur = surveyMain.createTestSurvey();
+		double testMax = surveyMain.getSurveyMax(testSur);
+		double assertMax = 1;
+		
+		for(SurveyResponse response: testSur.getResponses()) {
+			
+			for(int i = 0; i < response.getAnswers().size(); i++) {
+				if(response.getAnswers().get(i).getScore() > assertMax) {
+					assertMax = response.getAnswers().get(i).getScore();
+				}
+			}	
+		}
+		
+		assertEquals(assertMax, testMax, "Maximum score is not correct");
+	}
+	
 
 }

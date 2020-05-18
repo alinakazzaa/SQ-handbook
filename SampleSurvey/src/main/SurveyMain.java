@@ -160,13 +160,11 @@ public class SurveyMain {
 
 	// calculate minimum of survey responses
 	public int getSurveyMin(Survey survey) {
-		int min = 0;
+		int min = 5;
 		
 		for(SurveyResponse response: survey.getResponses()) {
-			int i = 0;
-			min = response.getAnswers().get(i).getScore();
 			
-			for(i = 1; i < response.getAnswers().size(); i++) {
+			for(int i = 0; i < response.getAnswers().size(); i++) {
 				if(response.getAnswers().get(i).getScore() < min) {
 					min = response.getAnswers().get(i).getScore();
 				}

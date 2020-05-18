@@ -167,5 +167,24 @@ class SurveyTest {
 		assertEquals(assertStdDev, testStdDev, "Standard Deviation is not correct");
 	}
 	
+	@Test
+	void testGetSurveyMin() {
+
+		Survey testSur = surveyMain.createTestSurvey();
+		double testMin = surveyMain.getSurveyMin(testSur);
+		double assertMin = 5;
+		
+		for(SurveyResponse response: testSur.getResponses()) {
+			
+			for(int i = 0; i < response.getAnswers().size(); i++) {
+				if(response.getAnswers().get(i).getScore() < assertMin) {
+					assertMin = response.getAnswers().get(i).getScore();
+				}
+			}	
+		}
+		
+		assertEquals(assertMin, testMin, "Standard Deviation is not correct");
+	}
+	
 
 }

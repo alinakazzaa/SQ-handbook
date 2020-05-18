@@ -12,15 +12,6 @@ public class SurveyMain {
 	
 	private ArrayList<Survey> surveys = new ArrayList<Survey>();
 	
-	public SurveyMain() {
-		Survey test = createTestSurvey();
-		getSurveyMin(test);
-	}
-	
-	public void main(String[] args) {
-		new SurveyMain();
-	}
-	
 	// add survey to list
 	public void addSurvey(String name) {
 		Survey newSurvey = new Survey((surveys.size() + 1), name);

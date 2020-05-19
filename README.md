@@ -70,6 +70,12 @@ Code must be refactored until the point of error free execution. See diagram bel
 
 ![TDD How to](/resources/diagrams/tdd-diagram.png)
 
+For example, here is a JUnit test for the functionality to get the average score of all survey questions: 
+
+ [PR 5 commit - test get average of survey scores](https://github.com/alinakazzaa/SQ-handbook/pull/5/commits/a3a955f7cf11ab4372f5ef57b22bb9ab122d41cf)
+
+There is a function called testGetSurveyAverage(), which is a test for the functionality of [getSurveyAverage()](https://github.com/alinakazzaa/SQ-handbook/pull/5/commits/b3ccab91a1c481efe58aad64b3147d7144d4e834) and tests the function using test data. This test was passed, and therefore the functionality was implemented. 
+
 2.	investigate and choose a code coverage tool
 
 3. Add a section that describes how to run the tool and include a screenshot of the tool running on your project

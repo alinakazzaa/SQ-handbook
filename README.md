@@ -57,8 +57,6 @@ This is the functionality that will be added later, which will protect the user 
 
 To ensure code is consistent and to minimise bugs, each piece of functionality must be tested before code is written using this functionality. 
 
-In this example project, using JUnit testing provided by Java, which is a tool that allows automated testing by assertion or pass/fail. 
-
 To define TDD, follow these steps:
 
 1. Add a test for piece of functionality
@@ -74,9 +72,26 @@ For example, here is a JUnit test for the functionality to get the average score
 
  [PR 5 commit - test get average of survey scores](https://github.com/alinakazzaa/SQ-handbook/pull/5/commits/a3a955f7cf11ab4372f5ef57b22bb9ab122d41cf)
 
-There is a function called testGetSurveyAverage(), which is a test for the functionality of [getSurveyAverage()](https://github.com/alinakazzaa/SQ-handbook/pull/5/commits/b3ccab91a1c481efe58aad64b3147d7144d4e834) and tests the function using test data. This test was passed, and therefore the functionality was implemented. 
+There is a function called testGetSurveyAverage(), which is a test for the functionality of [getSurveyAverage()](https://github.com/alinakazzaa/SQ-handbook/pull/5/commits/b3ccab91a1c481efe58aad64b3147d7144d4e834) and tests the function using test data. This test was passed, and therefore the functionality was implemented.
 
-2.	investigate and choose a code coverage tool
+#### Code Coverage Tool: Java JUnit
+
+In this example project, using JUnit testing provided by Java, which is a tool that allows automated testing by assertion or pass/fail. To implement a JUnit test using Eclipse:
+
+1. Create a JUnit Test Case
+
+![Add JUnit Test Case](/resources/diagrams/add-junit.png)
+
+2. Write test case using @Test annotation (which tells Java that this is an automated JUnit test)
+
+![Test Annotation](/resources/diagrams/test-annot.png)
+
+3. Run test and if fails, refactor, otherwise write more tests. 
+
+![Run Test](/resources/diagrams/run-test.png)
+
+
+
 
 3. Add a section that describes how to run the tool and include a screenshot of the tool running on your project
 

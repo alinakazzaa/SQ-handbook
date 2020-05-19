@@ -53,6 +53,8 @@ This is the functionality that will be added later, which will protect the user 
 
 ![Future Plans](/resources/sprints/future.png)
 
+8. Explain how the Velocity metric is calculated at the end of each sprint, and how that feeds into planning for the next Sprint
+
 ### Test Driven Development
 
 To ensure code is consistent and to minimise bugs, each piece of functionality must be tested before code is written using this functionality. 
@@ -147,10 +149,29 @@ and follow same merge process as above
 `git checkout master   git merge --no-ff release-1.0.1<br/>git push`
 
 
-5. Include a section in your documentation on Code Reviews
+### Code Reviews
 
-6. Suggest a checklist of things that a reviewer should check when reviewing a Pull Request
+Code reviews are an essential part of team development which encourages bug spotting, team work and a mix of opinions on implementation, and with the power of 'group think' helps overcome barriers, spot bugs and missing functionality, as well as encourage learning and improvement by providing feedback. 
 
-7. Link to a closed Pull Request within your project that demonstrates this list was followed 
+Each pull request with new functionality will be reviewed by one or several members of the team, feedback will be given and changes suggested. These changes will be implemented by the developer and again undergo a review. Once no more changes are requested, the pull request will be merged to production.
 
-8. Explain how the Velocity metric is calculated at the end of each sprint, and how that feeds into planning for the next Sprint
+#### Sample Code Review Checklist
+
+- [x] Clarity: understandable, well laid out and easy to navigate code
+- [x] Less is more: no excess unecessary code to achieve functionality is written
+- [x] Duplication: no duplicated code - if duplication occurs, code should be further split into classes/ methods
+- [x] Testing: all functionality has executed passing tests
+
+In the sample project, I have demonstrated sample review processes for the following: 
+
+- [x] [Clarity] (https://github.com/alinakazzaa/SQ-handbook/pull/2/files) 
+
+Code uses a formatter, therefore is easy to read. All functionality is split into single methods with one specific functionality, which is easy to navigate, re-use and change in the future. 
+
+- [x] [Less is more & duplication](https://github.com/alinakazzaa/SQ-handbook/pull/7/files)
+
+Here I have left negative feedback, poiting out that code duplication is poor practice and repeating code should be put into a reusable function. In this case, code should be refactored and submitted again for review. 
+
+- [x] [Testing](https://github.com/alinakazzaa/SQ-handbook/pull/7/files)
+
+Here the test cases a using randomly generated data (instead of writing more code to hardcode values), therefore it is impossible to use an assert value not knowing the outcome of the randonly generated numbers. However, for better practices it is better to have a legitimate hardcoded value that is sure to compare easily with the tested function outcome. 

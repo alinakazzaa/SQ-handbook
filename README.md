@@ -90,10 +90,13 @@ In this example project, using JUnit testing provided by Java, which is a tool t
 
 ![Run Test](/resources/diagrams/run-test.png)
 
+Here is an example of a passed test:
 
+![Passed Test](/resources/diagrams/passed-test.png)
 
+And a failed test, which describes exactly where it is failing, with reference to the line of code, therefore it is easy to spot the mistakes and fixed them instantly:
 
-3. Add a section that describes how to run the tool and include a screenshot of the tool running on your project
+![Failed Test](/resources/diagrams/failed-test.png)
 
 4. Include a section on Team version control, that describes the branches that were created for your project and how they fit in GitFlow
 

@@ -98,7 +98,60 @@ And a failed test, which describes exactly where it is failing, with reference t
 
 ![Failed Test](/resources/diagrams/failed-test.png)
 
-4. Include a section on Team version control, that describes the branches that were created for your project and how they fit in GitFlow
+### Team Version Control
+
+To ensure code is delivered consistently and is easy to navigate and trace, it is essential to split the functionality and implement them usiing feature branches. 
+
+Initially, one must always use the develop branch created locally. Each new functionality to be added to the software will get its own branch and be merged into the develop branch. 
+
+Once all code is tested and approved by reviewer(s), it will be merged into the master branch and released into production. 
+
+The following GitFlow procedures must be followed:
+
+1. Fork working repository to own repository & clone to local storage
+
+`git clone <repo-link>`
+
+2. Create develop branch locally
+
+`git checkout -b develop`
+
+3. Create feature branch originating from develop
+
+`git checkout develop \ngit checkout -b <feature-branch>`
+
+4. Write code, review & approve
+
+![Sample approval](https://github.com/alinakazzaa/SQ-handbook/pull/2#issuecomment-629871156)
+
+5. Merge into develop branch and pull
+
+`git checkout develop`
+`git merge <feature-branch>`
+
+resolve merge conflicts if any
+
+`git push`
+`git pull origin develop`
+
+6. Use hotfix branch for any force major code amendments
+
+`git checkout develop`
+`git checkout -b hotfix-1.0.1`
+
+and follow same merge process as above
+
+7. Create release branch originating from develop branch and update software version
+
+`git checkout develop`
+`git checkout -b release-1.0.1`
+
+8. Merge release branch with master
+
+`git checkout master`
+`git merge --no-ff release-1.0.1`
+`git push`
+
 
 5. Include a section in your documentation on Code Reviews
 

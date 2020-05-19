@@ -118,15 +118,16 @@ The following GitFlow procedures must be followed:
 
 3. Create feature branch originating from develop
 
-`git checkout develop \ngit checkout -b <feature-branch>`
+`git checkout develop` + 
+`git checkout -b <feature-branch>`
 
 4. Write code, review & approve
 
-![Sample approval](https://github.com/alinakazzaa/SQ-handbook/pull/2#issuecomment-629871156)
+[Sample approval](https://github.com/alinakazzaa/SQ-handbook/pull/2#issuecomment-629871156)
 
 5. Merge into develop branch and pull
 
-`git checkout develop`
+`git checkout develop` + 
 `git merge <feature-branch>`
 
 resolve merge conflicts if any

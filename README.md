@@ -130,24 +130,21 @@ The following GitFlow procedures must be followed:
 
 resolve merge conflicts if any
 
-`git push  <br /> git pull origin develop`
+`git push  git pull origin develop`
 
 6. Use hotfix branch for any force major code amendments
 
-`git checkout develop<br/>
-git checkout -b hotfix-1.0.1`
+`git checkout develop   git checkout -b hotfix-1.0.1`
 
 and follow same merge process as above
 
 7. Create release branch originating from develop branch and update software version
 
-`git checkout develop<br/>
- checkout -b release-1.0.1`
+`git checkout develop   checkout -b release-1.0.1`
 
 8. Merge release branch with master
 
-`git checkout master<br/>
-git merge --no-ff release-1.0.1<br/>git push`
+`git checkout master   git merge --no-ff release-1.0.1<br/>git push`
 
 
 5. Include a section in your documentation on Code Reviews

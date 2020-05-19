@@ -47,10 +47,39 @@ This sprint will be the extension of the statistics feature to gain deeper insig
 
 ![Sprint 4](/resources/sprints/4.png)
 
-#### 
-
 #### Future Plans
 
 This is the functionality that will be added later, which will protect the user data and better. It is not essential for the moment as the tool is theoretically connected to other “caller” code, therefore the authentication is already happening in that platform. However, for extra measures and data protection purposes, this may be useful. 
 
 ![Future Plans](/resources/sprints/future.png)
+
+### Test Driven Development
+
+To ensure code is consistent and to minimise bugs, each piece of functionality must be tested before code is written using this functionality. 
+
+In this example project, using JUnit testing provided by Java, which is a tool that allows automated testing by assertion or pass/fail. 
+
+To define TDD, follow these steps:
+
+1. Add a test for piece of functionality
+2. Run test and see if it fails
+3. Refactor code & re-run
+4. If passes, implement functionality
+
+Code must be refactored until the point of error free execution. See diagram below for a representation of the TDD flow:
+
+![TDD How to](/resources/diagrams/tdd-diagram.png)
+
+2.	investigate and choose a code coverage tool
+
+3. Add a section that describes how to run the tool and include a screenshot of the tool running on your project
+
+4. Include a section on Team version control, that describes the branches that were created for your project and how they fit in GitFlow
+
+5. Include a section in your documentation on Code Reviews
+
+6. Suggest a checklist of things that a reviewer should check when reviewing a Pull Request
+
+7. Link to a closed Pull Request within your project that demonstrates this list was followed 
+
+8. Explain how the Velocity metric is calculated at the end of each sprint, and how that feeds into planning for the next Sprint

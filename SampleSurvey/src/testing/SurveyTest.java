@@ -11,7 +11,6 @@ import classes.Survey;
 import classes.SurveyResponse;
 import classes.Answer;
 import main.SurveyMain;
-import java.text.DecimalFormat;
 
 
 class SurveyTest {

@@ -118,7 +118,7 @@ The following GitFlow procedures must be followed:
 
 3. Create feature branch originating from develop
 
-`git checkout develop      git checkout -b <feature-branch>`
+`git checkout develop   git checkout -b <feature-branch>`
 
 4. Write code, review & approve
 
@@ -126,13 +126,11 @@ The following GitFlow procedures must be followed:
 
 5. Merge into develop branch and pull
 
-`git checkout develop<br/>
-git merge <feature-branch>`
+`git checkout develop   git merge <feature-branch>`
 
 resolve merge conflicts if any
 
-`git push<br/>
-git pull origin develop`
+`git push  <br /> git pull origin develop`
 
 6. Use hotfix branch for any force major code amendments
 

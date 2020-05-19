@@ -118,7 +118,7 @@ The following GitFlow procedures must be followed:
 
 3. Create feature branch originating from develop
 
-`git checkout develop<b/>
+`git checkout develop  
 git checkout -b <feature-branch>`
 
 4. Write code, review & approve

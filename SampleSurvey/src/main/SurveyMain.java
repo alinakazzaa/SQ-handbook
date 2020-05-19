@@ -180,4 +180,95 @@ public class SurveyMain {
 		
 		return max;
 	}
+	
+	// calculate average of survey question responses
+	public double getSurveyQuestionAverage(Survey survey, Question question) {
+		double average = 0;
+		double totalScore = 0;
+		int totalAnswers = 0;
+	
+		ArrayList<SurveyResponse> responses = survey.getResponses();
+		
+		for(SurveyResponse response: responses) {
+			
+			for(Answer answer: response.getAnswers()) {
+				
+				if(answer.getQuestion().getId() == question.getId()) {
+					totalAnswers++;
+					totalScore = totalScore + answer.getScore();
+				}
+			}	
+		}
+		
+		average = totalScore / totalAnswers;
+		
+		return average;
+	}
+	
+	// calculate standard deviation of survey question responses
+	public double getSurveyQuestionStandDev(Survey survey, Question question) {
+		double average = getSurveyQuestionAverage(survey, question);
+		int totalAnswers = 0;
+		double stdDev = 0;
+		double totalDev = 0;
+		
+		for(SurveyResponse response: survey.getResponses()) {
+			
+			for(Answer answer: response.getAnswers()) {
+				if(answer.getQuestion().getId() == question.getId()) {
+					totalAnswers++;
+					totalDev = totalDev + Math.pow((answer.getScore() - average), 2);
+				}
+			}	
+		}
+		
+		stdDev = Math.sqrt(totalDev/totalAnswers);
+		
+		return stdDev;
+	}
+
+	// calculate minimum of survey question responses
+	public int getSurveyQuestionMin(Survey survey, Question question) {
+		int min = 5;
+		
+		for(SurveyResponse response: survey.getResponses()) {
+			
+			for(int i = 0; i < response.getAnswers().size(); i++) {
+				
+				Answer answer = response.getAnswers().get(i);
+				
+				if(answer.getQuestion().getId() == question.getId()) {
+				
+					if(answer.getScore() < min) {
+					min = response.getAnswers().get(i).getScore();
+					
+					}
+				}
+			}	
+		}
+		
+		return min;
+	}
+	
+	// calculate maximum of survey question responses
+	public int getSurveyQuestionMax(Survey survey, Question question) {
+		int max = 1;
+		
+		for(SurveyResponse response: survey.getResponses()) {
+			
+			for(int i = 0; i < response.getAnswers().size(); i++) {
+				
+				Answer answer = response.getAnswers().get(i);
+				
+				if(answer.getQuestion().getId() == question.getId()) {
+					if(answer.getScore() > max) {
+						max = answer.getScore();
+					}
+				}
+				
+			}	
+		}
+		
+		return max;
+	}
 }

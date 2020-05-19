@@ -25,6 +25,10 @@ This sprint will focus on the surveyor functionality, as to begin the process of
 
 ![Sprint 1](/resources/sprints/1.png)
 
+A total Velocity of 9 story points during the first spring sets the pace of development for the remainder of the project. 
+
+During this sprint the team can assess the complexity of the software and estimate the time it will take to continue adding new functionality. The goal is to maintain this workflow (given the time taken to achieve functionality is in accordance with the expectations) and add/ remove sprint tasks to maintain an balanced burndown. 
+
 To begin the project, I will create survey objects that will be required such as Survey, Question and Response. Each object will have a set of attributes. This initial set up will take long, therefore 40 minutes is allocated to it. 
 
 To view the already existing projects, 20 minutes is sufficient enough. However, the overall spring time is the longest as it will contain the core functionality of the system. 
@@ -35,11 +39,15 @@ In the second sprint it the functionality for the surveyed person (answering the
 
 ![Sprint 2](/resources/sprints/2.png)
 
+The total velocity of this sprint is almost equal to the first one, but is 1 storypoint less. This is acceptable and is within the steady workflow, however is less than the first sprint, which means either less work had to be done or it was less complex.
+
 #### Sprint 3
 
 Spring three will focus on providing statistics of the survey and will calculate the average, standard deviation, minimum and maximum score of the overall responses received in all question responses.
 
 ![Sprint 3](/resources/sprints/3.png)
+
+A maintained total of 8 story points during the third sprint indicates that work has been split evenly and the development sprint complexity and time consumption was identical to the previous. 
 
 #### Sprint 4
 
@@ -47,13 +55,13 @@ This sprint will be the extension of the statistics feature to gain deeper insig
 
 ![Sprint 4](/resources/sprints/4.png)
 
+Similarly to the previous 2 sprints, this was accurately estimated. 
+
 #### Future Plans
 
 This is the functionality that will be added later, which will protect the user data and better. It is not essential for the moment as the tool is theoretically connected to other “caller” code, therefore the authentication is already happening in that platform. However, for extra measures and data protection purposes, this may be useful. 
 
 ![Future Plans](/resources/sprints/future.png)
-
-8. Explain how the Velocity metric is calculated at the end of each sprint, and how that feeds into planning for the next Sprint
 
 ### Test Driven Development
 
@@ -164,7 +172,7 @@ Each pull request with new functionality will be reviewed by one or several memb
 
 In the sample project, I have demonstrated sample review processes for the following: 
 
-- [x] [Clarity] (https://github.com/alinakazzaa/SQ-handbook/pull/2/files) 
+- [x] [Clarity](https://github.com/alinakazzaa/SQ-handbook/pull/2/files) 
 
 Code uses a formatter, therefore is easy to read. All functionality is split into single methods with one specific functionality, which is easy to navigate, re-use and change in the future. 
 
